@@ -32,7 +32,7 @@
     flex-wrap: wrap;
     width: 100%;
     height: calc(100vh - 100px);
-    background-image: url(img/bg_main_header.jpg);
+    background-image: url(/img/bg_main_header.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -148,13 +148,13 @@
     }
     &:nth-child(1){
         &::after{
-            background-image: url(svg/trees.svg);
+            background-image: url(/svg/trees.svg);
             background-size: 75% 75%;
         }
     }
     &:nth-child(2){
         &::after{
-            background-image: url(svg/found.svg);
+            background-image: url(/svg/found.svg);
             background-size: 60% 60%;
         }
     }
