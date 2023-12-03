@@ -228,13 +228,13 @@
 			{#if user.isAdmin}<div class="publication"><Switch status={post.publication} on:click={changeStatus} /></div>{/if}
 			<div class="data">{monthNames[post.date.getMonth()]} {post.date.getDate()}, {post.date.getUTCFullYear()}</div>
 			<!-- <div class="data">Апрель 07, 2023</div> -->
-			<div class="title">
+			<h1 class="title">
 				{@html post.title}
 				{#if user.isAdmin}<BtnEditBlock 
 					on:getData={(event) => { edit_field = event.detail; }}
 					info={{id: post.id, field: 'title', type: 'input', title: 'Редактирования названия поста:'}}
 				/>{/if}
-			</div>
+			</h1>
 			{#if user.isAdmin}
 				<div class="text">
 					{@html post.text}
