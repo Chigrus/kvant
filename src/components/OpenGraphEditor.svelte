@@ -18,7 +18,7 @@
 
 
 	let cropData:Object;
-	let cropSize = {width: 1200, height: 630};
+	let cropSize = {width: 370, height: 240};
 	
 
     function clickEditOgImage(){
@@ -76,7 +76,7 @@
 						zoom={1}
 						minZoom={0.8}
 						maxZoom={2}
-						aspect = {1200/630}
+						aspect = {370/240}
 						zoomSpeed={0.1}
 						restrictPosition={false}
 						on:cropcomplete={(event) => cropData = event.detail.pixels}
