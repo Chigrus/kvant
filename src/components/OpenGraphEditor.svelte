@@ -24,8 +24,8 @@
 	async function openGraphSave(){
 		if (isUploadImage){
 			const blob = await cropImage(dataOpenGraph.og_image, cropData, cropSize, 'image/jpeg', 1);
-			dataOpenGraph.og_image = await uploadImage('image/jpeg', blob);
-			dataOpenGraph.og_image = dataOpenGraph.og_image.url;
+			let res = await uploadImage('image/jpeg', blob);
+			dataOpenGraph.og_image = res.url;
 			//console.log(dataOpenGraph.og_image.url);
 			//dataOpenGraph.og_image = 'https://frontend-expert.ru' + dataOpenGraph.og_image;
 		}
