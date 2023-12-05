@@ -18,7 +18,7 @@
 
 
 	let cropData:Object;
-	let cropSize = {width: 1200, height: 630};
+	let cropSize = {width: 600, height: 315};
 	
 
     function clickEditOgImage(){
