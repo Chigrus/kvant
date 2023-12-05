@@ -3,6 +3,7 @@ export type User = {
     isEditor: boolean;
 }
 export type OG = {
+    id: number;
     title: string;
     description: string;
     og_type: string;

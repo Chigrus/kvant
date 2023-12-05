@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	import Popup from '../components/Popup.svelte';
 	import VisualEditor from '../components/VisualEditor.svelte';
 	import Button from '../components/Button.svelte';
@@ -8,14 +8,18 @@
 	// import { saveOpenGraph, uploadImage } from '../requests';
 	import { uploadImage, saveOpenGraph } from '../requests';
 
-    export let dataOpenGraph = {};
+	import type {OG} from '../routes/types'
+
+    export let dataOpenGraph:OG;
     export let isOpenGraphEdit = false;
 
-    let cropData;
-	let isUploadImage;
+    let isUploadImage:boolean;
 	let isEditOgImage = false;
 
+
+	let cropData:Object;
 	let cropSize = {width: 1200, height: 630};
+	
 
     function clickEditOgImage(){
 		isEditOgImage = true;
@@ -24,8 +28,11 @@
 	async function openGraphSave(){
 		if (isUploadImage){
 			const blob = await cropImage(dataOpenGraph.og_image, cropData, cropSize, 'image/jpeg', 1);
+			console.log(blob);
 			let res = await uploadImage('image/jpeg', blob);
+			console.log(res);
 			dataOpenGraph.og_image = res.url;
+			console.log(dataOpenGraph.og_image);
 			//console.log(dataOpenGraph.og_image.url);
 			//dataOpenGraph.og_image = 'https://frontend-expert.ru' + dataOpenGraph.og_image;
 		}
@@ -39,22 +46,22 @@
 	<div class="og_content" slot="content">
 		<div class="og_inner">
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.title}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" isCounter="{{isShow: true, min: 40, max: 60}}" buttons={[]} title="<b>title</b> - длина от 40 до 60 символов" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.title}" idEditor="{dataOpenGraph.id}" isHeightAuto isCounter="{{isShow: true, min: 40, max: 60}}" buttons={[]} title="<b>title</b> - длина от 40 до 60 символов" />
 			</div>
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.description}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" isCounter="{{isShow: true, min: 120, max: 135}}" buttons={[]} title="<b>description</b> - длина от 120 до 135 символов" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.description}" idEditor="{dataOpenGraph.id}" isHeightAuto isCounter="{{isShow: true, min: 120, max: 135}}" buttons={[]} title="<b>description</b> - длина от 120 до 135 символов" />
 			</div>
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.og_type}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" buttons={[]} title="<b>og:type</b> - тип объекта (website, article, profile)" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.og_type}" idEditor="{dataOpenGraph.id}" isHeightAuto buttons={[]} title="<b>og:type</b> - тип объекта (website, article, profile)" />
 			</div>
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.og_title}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" isCounter="{{isShow: true, min: 40, max: 60}}" buttons={[]} title="<b>og:title</b> - тег заголовка для микроразметки" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.og_title}" idEditor="{dataOpenGraph.id}" isHeightAuto isCounter="{{isShow: true, min: 40, max: 60}}" buttons={[]} title="<b>og:title</b> - тег заголовка для микроразметки" />
 			</div>
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.og_description}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" isCounter="{{isShow: true, min: 120, max: 135}}" buttons={[]} title="<b>og:description</b> - тег описание объекта на странице" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.og_description}" idEditor="{dataOpenGraph.id}" isHeightAuto isCounter="{{isShow: true, min: 120, max: 135}}" buttons={[]} title="<b>og:description</b> - тег описание объекта на странице" />
 			</div>
 			<div class="line">
-				<VisualEditor bind:textEditor="{dataOpenGraph.og_url}" idEditor="{dataOpenGraph.id}" isHeightAuto="true" buttons={[]} title="<b>og:url</b> - каноническая ссылка" />
+				<VisualEditor bind:textEditor="{dataOpenGraph.og_url}" idEditor="{dataOpenGraph.id}" isHeightAuto buttons={[]} title="<b>og:url</b> - каноническая ссылка" />
 			</div>
 			<div class="line">
 				<div class="og_image_title">
